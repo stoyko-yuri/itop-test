@@ -1,0 +1,37 @@
+.converter_side {
+}
+
+.converter_side input {
+  padding-left: 16px;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px 0 0 20px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+
+.converter_side select {
+  padding: 0 2px;
+  height: 42px;
+  border-radius: 0 20px 20px 0;
+  background: #29d;
+  color: #eee;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+
+.converter_side select:hover {
+  background: #27d;
+  cursor: pointer;
+}
+
+.converter_side select:focus {
+  background: #27d;
+}
+
+.converter_side select option {
+  background: #fff;
+  color: #000;
+}

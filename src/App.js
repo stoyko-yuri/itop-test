@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import "./App.css";
+import CurrencyConverter from "./components/CurrencyConverter";
+import Header from "./components/Header";
 
-function App() {
+const App = () => {
+  const [headerData, setHeaderData] = useState();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    await fetch(
+      "https://api.fastforex.io/fetch-multi?from=UAH&to=EUR,USD&api_key=6f851466d1-f1caab4731-rdkes4"
+    )
+      .then((res) => res.json())
+      .then((res) => setHeaderData(res));
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header headerData={{ ...headerData }} />
+      <CurrencyConverter />
     </div>
   );
-}
+};
 
 export default App;
