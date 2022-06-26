@@ -10,11 +10,11 @@ const Header = ({ headerData }) => {
     <div className="header">
       <div className="header-inner">
         {headerData &&
-          Object.keys({ ...headerData.results }).map((obj, index) => {
+          Object.keys({ ...headerData.rates }).map((obj, index) => {
             return (
               <p key={index}>
                 {`${obj}/${headerData.base}: ${calcRate(
-                  { ...headerData.results }[obj]
+                  headerData.rates[obj]
                 )}`}
               </p>
             );

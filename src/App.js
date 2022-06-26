@@ -13,9 +13,7 @@ const App = () => {
   }, []);
 
   async function fetchData() {
-    await fetch(
-      "https://api.fastforex.io/fetch-multi?from=UAH&to=EUR,USD&api_key=6f851466d1-f1caab4731-rdkes4"
-    )
+    await fetch("https://api.exchangerate.host/latest?base=UAH&symbols=USD,EUR")
       .then((res) => res.json())
       .then((res) => setHeaderData(res));
   }

@@ -25,12 +25,10 @@ const CurrencyConverter = () => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch(
-        "https://api.fastforex.io/currencies?api_key=6f851466d1-f1caab4731-rdkes4"
-      )
+      await fetch("https://api.exchangerate.host/latest")
         .then((res) => res.json())
         .then((res) => {
-          setAllCurrencies({ ...res.currencies });
+          setAllCurrencies({ ...res.rates });
         });
     }
     fetchData();
@@ -38,18 +36,18 @@ const CurrencyConverter = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.fastforex.io//fetch-one?from=${leftCurrencyDefault}&to=${rightCurrencyDefault}&api_key=6f851466d1-f1caab4731-rdkes4`
+      `https://api.exchangerate.host/latest?base=${leftCurrencyDefault}&symbols=${rightCurrencyDefault}`
     )
       .then((res) => res.json())
       .then((res) => {
-        setRightCurrencyCostDefault(Object.values({ ...res.result })[0]);
+        setRightCurrencyCostDefault(Object.values({ ...res.rates })[0]);
       });
     fetch(
-      `https://api.fastforex.io//fetch-one?from=${rightCurrencyDefault}&to=${leftCurrencyDefault}&api_key=6f851466d1-f1caab4731-rdkes4`
+      `https://api.exchangerate.host/latest?base=${rightCurrencyDefault}&symbols=${leftCurrencyDefault}`
     )
       .then((res) => res.json())
       .then((res) => {
-        setLeftCurrencyCostDefault(Object.values({ ...res.result })[0]);
+        setLeftCurrencyCostDefault(Object.values({ ...res.rates })[0]);
       });
   }, [leftCurrencyDefault, rightCurrencyDefault]);
 
